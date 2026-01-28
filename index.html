@@ -818,12 +818,75 @@
     </div>
 
     <!-- =======================
-         PAGE 5: ACTIVITIES
+         PAGE 5: SATURDAY
+         ======================= -->
+    <div class="page">
+      <div class="header-strip">
+        <span>היום השלישי</span>
+        <span class="page-num">05</span>
+      </div>
+
+      <div class="page-content">
+        <h2 class="page-title-lg text-display">יום שבת</h2>
+        <p class="text-muted text-sm" style="margin-bottom: 15px;">18.04 // סיום רגוע</p>
+
+        <div class="timeline-container">
+
+          <div class="time-slot highlight">
+            <div class="time-card">
+              <span class="time-display">09:00 - 10:30</span>
+              <div class="text-bold" style="color: var(--color-accent); font-size: 16px;">🥟 ג'חנונים!</div>
+              <div class="text-muted text-sm">של אמא של אביאל 🙏</div>
+            </div>
+          </div>
+
+          <div class="time-slot">
+            <div class="time-card">
+              <span class="time-display">10:30 - 12:00</span>
+              <div class="text-bold text-sm">🏊 התפננות בבריכה</div>
+              <div class="text-muted text-sm">יום שבת רגוע - מגיע לנו!</div>
+            </div>
+          </div>
+
+          <div class="time-slot">
+            <div class="time-card">
+              <span class="time-display">12:00 - 13:00</span>
+              <div class="text-bold text-sm">🧹 נקיון וצ'ק-אאוט</div>
+              <div class="text-muted text-sm">לסדר את הווילה ולצאת</div>
+            </div>
+          </div>
+
+          <div class="time-slot">
+            <div class="time-card">
+              <span class="time-display">13:00</span>
+              <div class="text-bold text-sm">👋 סיכום ופרידה</div>
+              <div class="text-muted text-sm">תמונה קבוצתית + נסיעה בטוחה!</div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Jachnun highlight box -->
+        <div class="card" style="margin-top: 20px; background: linear-gradient(135deg, #f8d459 0%, #f5a623 100%); color: #333;">
+          <h3 style="font-size: 14px; margin-bottom: 8px;">🥟 תפריט בוקר שבת</h3>
+          <div style="font-size: 12px; line-height: 1.6;">
+            <div>• ג'חנונים תימניים אותנטיים</div>
+            <div>• ביצים קשות + רסק עגבניות</div>
+            <div>• סחוג + קפה חזק ☕</div>
+          </div>
+          <div style="font-size: 11px; margin-top: 10px; opacity: 0.8;">תודה לאמא של אביאל! 🙏</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- =======================
+         PAGE 6: ACTIVITIES
          ======================= -->
     <div class="page">
       <div class="header-strip">
         <span>האטרקציות</span>
-        <span class="page-num">05</span>
+        <span class="page-num">06</span>
       </div>
 
       <div class="page-content">
@@ -888,42 +951,99 @@
     </div>
 
     <!-- =======================
-         PAGE 6: NAVIGATION
+         PAGE 7: NAVIGATION
          ======================= -->
     <div class="page">
       <div class="header-strip">
         <span>ניווט ומפות</span>
-        <span class="page-num">06</span>
+        <span class="page-num">07</span>
       </div>
 
       <div class="page-content">
-        <h2 class="page-title-lg text-display">קישורים לווייז</h2>
-        <p class="text-muted text-sm" style="margin-bottom: 20px;">סרקו כדי לנווט ישירות:</p>
+        <h2 class="page-title-lg text-display">ניווט</h2>
+        <p class="text-muted text-sm" style="margin-bottom: 15px;">לחצו על האייקון לפתוח באפליקציה:</p>
 
-        <div class="qr-grid">
-          <div class="qr-card">
-            <div class="text-bold text-sm" style="color: var(--color-primary)">🏠 הווילה</div>
-            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://waze.com/ul?q=נוף%20כנרת%2087%20צפת" class="qr-img">
-            <div class="text-muted" style="font-size: 11px">צפת</div>
+        <!-- Navigation Cards with App Icons -->
+        <style>
+          .nav-card { padding: 12px; margin-bottom: 10px; }
+          .nav-card-title { font-weight: 600; margin-bottom: 8px; font-size: 13px; }
+          .nav-buttons { display: flex; gap: 10px; justify-content: center; }
+          .nav-btn { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            text-decoration: none; 
+            padding: 8px 16px;
+            border-radius: 12px;
+            transition: transform 0.2s;
+          }
+          .nav-btn:hover { transform: scale(1.05); }
+          .nav-btn img { width: 40px; height: 40px; border-radius: 10px; margin-bottom: 4px; }
+          .nav-btn span { font-size: 10px; color: #666; font-weight: 500; }
+        </style>
+
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          
+          <!-- Villa -->
+          <div class="card nav-card">
+            <div class="nav-card-title">🏠 הווילה - נוף כנרת 87, צפת</div>
+            <div class="nav-buttons">
+              <a href="https://waze.com/ul?q=נוף%20כנרת%2087%20צפת" target="_blank" class="nav-btn">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Waze_logo.svg/512px-Waze_logo.svg.png" alt="Waze">
+                <span>Waze</span>
+              </a>
+              <a href="https://www.google.com/maps/search/נוף+כנרת+87+צפת" target="_blank" class="nav-btn">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Google_Maps_icon_%282020%29.svg/512px-Google_Maps_icon_%282020%29.svg.png" alt="Google Maps">
+                <span>Maps</span>
+              </a>
+            </div>
           </div>
 
-          <div class="qr-card">
-            <div class="text-bold text-sm" style="color: var(--color-primary)">🎯 פיינטבול</div>
-            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://waze.com/ul?q=פיינטבול%20בית%20ברל" class="qr-img">
-            <div class="text-muted" style="font-size: 11px">בית ברל</div>
+          <!-- Paintball -->
+          <div class="card nav-card">
+            <div class="nav-card-title">🎯 פיינטבול ישראל - בית ברל</div>
+            <div class="nav-buttons">
+              <a href="https://waze.com/ul?q=פיינטבול%20ישראל%20בית%20ברל" target="_blank" class="nav-btn">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Waze_logo.svg/512px-Waze_logo.svg.png" alt="Waze">
+                <span>Waze</span>
+              </a>
+              <a href="https://www.google.com/maps/search/פיינטבול+ישראל+בית+ברל" target="_blank" class="nav-btn">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Google_Maps_icon_%282020%29.svg/512px-Google_Maps_icon_%282020%29.svg.png" alt="Google Maps">
+                <span>Maps</span>
+              </a>
+            </div>
           </div>
 
-          <div class="qr-card">
-            <div class="text-bold text-sm" style="color: var(--color-primary)">🏎️ RZR</div>
-            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://waze.com/ul?q=חד%20נס" class="qr-img">
-            <div class="text-muted" style="font-size: 11px">חד נס</div>
+          <!-- RZR -->
+          <div class="card nav-card">
+            <div class="nav-card-title">🏎️ טרקטורוני נחום - חד נס, גולן</div>
+            <div class="nav-buttons">
+              <a href="https://waze.com/ul?q=חד%20נס%20רמת%20הגולן" target="_blank" class="nav-btn">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Waze_logo.svg/512px-Waze_logo.svg.png" alt="Waze">
+                <span>Waze</span>
+              </a>
+              <a href="https://www.google.com/maps/search/חד+נס+רמת+הגולן" target="_blank" class="nav-btn">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Google_Maps_icon_%282020%29.svg/512px-Google_Maps_icon_%282020%29.svg.png" alt="Google Maps">
+                <span>Maps</span>
+              </a>
+            </div>
           </div>
 
-          <div class="qr-card">
-            <div class="text-bold text-sm" style="color: var(--color-primary)">🍽️ מסעדה ערבית</div>
-            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://waze.com/ul?q=מג'דל%20שמס" class="qr-img">
-            <div class="text-muted" style="font-size: 11px">לעדכן כשנסגור</div>
+          <!-- Restaurant -->
+          <div class="card nav-card" style="border: 2px dashed var(--color-accent);">
+            <div class="nav-card-title">🍽️ מסעדה ערבית - יעודכן בקרוב</div>
+            <div class="nav-buttons">
+              <a href="https://waze.com/ul?q=מג'דל%20שמס" target="_blank" class="nav-btn">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Waze_logo.svg/512px-Waze_logo.svg.png" alt="Waze">
+                <span>Waze</span>
+              </a>
+              <a href="https://www.google.com/maps/search/מגדל+שמס" target="_blank" class="nav-btn">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Google_Maps_icon_%282020%29.svg/512px-Google_Maps_icon_%282020%29.svg.png" alt="Google Maps">
+                <span>Maps</span>
+              </a>
+            </div>
           </div>
+
         </div>
 
         <!-- Travel Times -->
@@ -947,12 +1067,12 @@
     </div>
 
     <!-- =======================
-         PAGE 7: CONTACTS
+         PAGE 8: CONTACTS
          ======================= -->
     <div class="page">
       <div class="header-strip">
         <span>אנשי קשר</span>
-        <span class="page-num">07</span>
+        <span class="page-num">08</span>
       </div>
 
       <div class="page-content">
@@ -1001,12 +1121,12 @@
     </div>
 
     <!-- =======================
-         PAGE 8: PACKING LIST
+         PAGE 9: PACKING LIST
          ======================= -->
     <div class="page">
       <div class="header-strip">
         <span>מה להביא</span>
-        <span class="page-num">08</span>
+        <span class="page-num">09</span>
       </div>
 
       <div class="page-content">
