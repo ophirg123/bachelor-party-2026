@@ -961,86 +961,90 @@
 
       <div class="page-content">
         <h2 class="page-title-lg text-display">ניווט</h2>
-        <p class="text-muted text-sm" style="margin-bottom: 15px;">לחצו על האייקון לפתוח באפליקציה:</p>
+        <p class="text-muted text-sm" style="margin-bottom: 15px;">לחצו לפתוח באפליקציה:</p>
 
-        <!-- Navigation Cards with App Icons -->
         <style>
-          .nav-card { padding: 12px; margin-bottom: 10px; }
-          .nav-card-title { font-weight: 600; margin-bottom: 8px; font-size: 13px; }
-          .nav-buttons { display: flex; gap: 10px; justify-content: center; }
-          .nav-btn { 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            text-decoration: none; 
-            padding: 8px 16px;
+          .nav-item { display: flex; align-items: center; padding: 14px; margin-bottom: 10px; gap: 12px; }
+          .nav-info { flex: 1; text-align: right; }
+          .nav-title { font-weight: 600; font-size: 13px; margin-bottom: 2px; }
+          .nav-subtitle { font-size: 11px; color: #888; }
+          .nav-links { display: flex; gap: 8px; }
+          .waze-btn, .gmaps-btn {
+            width: 44px; height: 44px;
             border-radius: 12px;
-            transition: transform 0.2s;
+            display: flex; align-items: center; justify-content: center;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
           }
-          .nav-btn:hover { transform: scale(1.05); }
-          .nav-btn img { width: 40px; height: 40px; border-radius: 10px; margin-bottom: 4px; }
-          .nav-btn span { font-size: 10px; color: #666; font-weight: 500; }
+          .waze-btn:hover, .gmaps-btn:hover { transform: scale(1.1); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+          .waze-btn { background: linear-gradient(135deg, #33ccff 0%, #00b8e6 100%); }
+          .gmaps-btn { background: linear-gradient(135deg, #4285f4 0%, #34a853 50%, #fbbc05 75%, #ea4335 100%); }
+          .waze-btn svg, .gmaps-btn svg { width: 24px; height: 24px; fill: white; }
         </style>
 
-        <div style="display: flex; flex-direction: column; gap: 8px;">
+        <div style="display: flex; flex-direction: column;">
           
           <!-- Villa -->
-          <div class="card nav-card">
-            <div class="nav-card-title">🏠 הווילה - נוף כנרת 87, צפת</div>
-            <div class="nav-buttons">
-              <a href="https://waze.com/ul?q=נוף%20כנרת%2087%20צפת" target="_blank" class="nav-btn">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Waze_logo.svg/512px-Waze_logo.svg.png" alt="Waze">
-                <span>Waze</span>
+          <div class="card nav-item">
+            <div class="nav-links">
+              <a href="https://waze.com/ul?q=נוף%20כנרת%2087%20צפת" target="_blank" class="waze-btn" title="Waze">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.486 2 2 6.486 2 12c0 4.583 3.158 8.439 7.405 9.565.138-.467.244-.939.316-1.416A8.002 8.002 0 0 1 4 12a8 8 0 0 1 16 0 8.002 8.002 0 0 1-5.721 7.649c.072.477.178.949.316 1.416C18.842 20.439 22 16.583 22 12c0-5.514-4.486-10-10-10zm-2 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm4 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-4.5 3h5c0 1.381-1.119 2.5-2.5 2.5S9.5 15.381 9.5 14z"/></svg>
               </a>
-              <a href="https://www.google.com/maps/search/נוף+כנרת+87+צפת" target="_blank" class="nav-btn">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Google_Maps_icon_%282020%29.svg/512px-Google_Maps_icon_%282020%29.svg.png" alt="Google Maps">
-                <span>Maps</span>
+              <a href="https://www.google.com/maps/search/נוף+כנרת+87+צפת" target="_blank" class="gmaps-btn" title="Google Maps">
+                <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
               </a>
+            </div>
+            <div class="nav-info">
+              <div class="nav-title">🏠 הווילה</div>
+              <div class="nav-subtitle">נוף כנרת 87, צפת</div>
             </div>
           </div>
 
           <!-- Paintball -->
-          <div class="card nav-card">
-            <div class="nav-card-title">🎯 פיינטבול ישראל - בית ברל</div>
-            <div class="nav-buttons">
-              <a href="https://waze.com/ul?q=פיינטבול%20ישראל%20בית%20ברל" target="_blank" class="nav-btn">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Waze_logo.svg/512px-Waze_logo.svg.png" alt="Waze">
-                <span>Waze</span>
+          <div class="card nav-item">
+            <div class="nav-links">
+              <a href="https://waze.com/ul?q=פיינטבול%20ישראל%20בית%20ברל" target="_blank" class="waze-btn" title="Waze">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.486 2 2 6.486 2 12c0 4.583 3.158 8.439 7.405 9.565.138-.467.244-.939.316-1.416A8.002 8.002 0 0 1 4 12a8 8 0 0 1 16 0 8.002 8.002 0 0 1-5.721 7.649c.072.477.178.949.316 1.416C18.842 20.439 22 16.583 22 12c0-5.514-4.486-10-10-10zm-2 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm4 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-4.5 3h5c0 1.381-1.119 2.5-2.5 2.5S9.5 15.381 9.5 14z"/></svg>
               </a>
-              <a href="https://www.google.com/maps/search/פיינטבול+ישראל+בית+ברל" target="_blank" class="nav-btn">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Google_Maps_icon_%282020%29.svg/512px-Google_Maps_icon_%282020%29.svg.png" alt="Google Maps">
-                <span>Maps</span>
+              <a href="https://www.google.com/maps/search/פיינטבול+ישראל+בית+ברל" target="_blank" class="gmaps-btn" title="Google Maps">
+                <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
               </a>
+            </div>
+            <div class="nav-info">
+              <div class="nav-title">🎯 פיינטבול ישראל</div>
+              <div class="nav-subtitle">בית ברל, ליד כפר סבא</div>
             </div>
           </div>
 
           <!-- RZR -->
-          <div class="card nav-card">
-            <div class="nav-card-title">🏎️ טרקטורוני נחום - חד נס, גולן</div>
-            <div class="nav-buttons">
-              <a href="https://waze.com/ul?q=חד%20נס%20רמת%20הגולן" target="_blank" class="nav-btn">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Waze_logo.svg/512px-Waze_logo.svg.png" alt="Waze">
-                <span>Waze</span>
+          <div class="card nav-item">
+            <div class="nav-links">
+              <a href="https://waze.com/ul?q=חד%20נס%20רמת%20הגולן" target="_blank" class="waze-btn" title="Waze">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.486 2 2 6.486 2 12c0 4.583 3.158 8.439 7.405 9.565.138-.467.244-.939.316-1.416A8.002 8.002 0 0 1 4 12a8 8 0 0 1 16 0 8.002 8.002 0 0 1-5.721 7.649c.072.477.178.949.316 1.416C18.842 20.439 22 16.583 22 12c0-5.514-4.486-10-10-10zm-2 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm4 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-4.5 3h5c0 1.381-1.119 2.5-2.5 2.5S9.5 15.381 9.5 14z"/></svg>
               </a>
-              <a href="https://www.google.com/maps/search/חד+נס+רמת+הגולן" target="_blank" class="nav-btn">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Google_Maps_icon_%282020%29.svg/512px-Google_Maps_icon_%282020%29.svg.png" alt="Google Maps">
-                <span>Maps</span>
+              <a href="https://www.google.com/maps/search/חד+נס+רמת+הגולן" target="_blank" class="gmaps-btn" title="Google Maps">
+                <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
               </a>
+            </div>
+            <div class="nav-info">
+              <div class="nav-title">🏎️ טרקטורוני נחום</div>
+              <div class="nav-subtitle">חד נס, רמת הגולן</div>
             </div>
           </div>
 
           <!-- Restaurant -->
-          <div class="card nav-card" style="border: 2px dashed var(--color-accent);">
-            <div class="nav-card-title">🍽️ מסעדה ערבית - יעודכן בקרוב</div>
-            <div class="nav-buttons">
-              <a href="https://waze.com/ul?q=מג'דל%20שמס" target="_blank" class="nav-btn">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Waze_logo.svg/512px-Waze_logo.svg.png" alt="Waze">
-                <span>Waze</span>
+          <div class="card nav-item" style="border: 2px dashed var(--color-accent);">
+            <div class="nav-links">
+              <a href="https://waze.com/ul?q=מג'דל%20שמס" target="_blank" class="waze-btn" title="Waze">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.486 2 2 6.486 2 12c0 4.583 3.158 8.439 7.405 9.565.138-.467.244-.939.316-1.416A8.002 8.002 0 0 1 4 12a8 8 0 0 1 16 0 8.002 8.002 0 0 1-5.721 7.649c.072.477.178.949.316 1.416C18.842 20.439 22 16.583 22 12c0-5.514-4.486-10-10-10zm-2 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm4 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-4.5 3h5c0 1.381-1.119 2.5-2.5 2.5S9.5 15.381 9.5 14z"/></svg>
               </a>
-              <a href="https://www.google.com/maps/search/מגדל+שמס" target="_blank" class="nav-btn">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Google_Maps_icon_%282020%29.svg/512px-Google_Maps_icon_%282020%29.svg.png" alt="Google Maps">
-                <span>Maps</span>
+              <a href="https://www.google.com/maps/search/מגדל+שמס" target="_blank" class="gmaps-btn" title="Google Maps">
+                <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
               </a>
+            </div>
+            <div class="nav-info">
+              <div class="nav-title">🍽️ מסעדה ערבית</div>
+              <div class="nav-subtitle">יעודכן כשנסגור</div>
             </div>
           </div>
 
