@@ -32,8 +32,8 @@
       --font-body: 'Heebo', sans-serif;
       
       /* Measurements */
-      --page-width: 148mm;
-      --page-height: 210mm;
+      --page-width: min(600px, 95vw);
+      --page-height: auto;
       --radius-lg: 24px;
       --radius-md: 16px;
       --shadow-card: 0 10px 30px -5px rgba(44, 75, 93, 0.1);
@@ -65,11 +65,11 @@
 
     .page {
       width: var(--page-width);
-      min-height: var(--page-height);
+      min-height: auto;
       background: var(--color-bg);
       position: relative;
       overflow: hidden;
-      box-shadow: 0 0 50px rgba(0,0,0,0.5);
+      box-shadow: 0 0 50px rgba(0,0,0,0.3);
       display: flex;
       flex-direction: column;
     }
