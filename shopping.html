@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🛒 רשימת קניות - מסיבת רווקים 2026</title>
+  <meta property="og:title" content="🛒 רשימת קניות - מסיבת רווקים">
+  <meta property="og:description" content="רשימת קניות מסודרת לפי מחלקות בסופר">
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2C4B5D;
+      --accent: #6B8E80;
+      --bg: #1a1a2e;
+      --surface: #F4F7F6;
+      --card: #FFFFFF;
+      --text: #2C4B5D;
+      --muted: #647E8C;
+      --danger: #e74c3c;
+      --success: #27ae60;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Heebo', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 0;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: var(--surface);
+      min-height: 100vh;
+    }
+    .header {
+      background: var(--primary);
+      color: white;
+      padding: 20px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header h1 { font-size: 22px; margin-bottom: 4px; }
+    .header p { font-size: 13px; opacity: 0.8; }
+    .progress-bar {
+      background: rgba(255,255,255,0.2);
+      height: 6px;
+      border-radius: 3px;
+      margin-top: 12px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      background: var(--accent);
+      height: 100%;
+      border-radius: 3px;
+      transition: width 0.3s ease;
+    }
+    .progress-text {
+      font-size: 11px;
+      margin-top: 4px;
+      opacity: 0.7;
+    }
+    .filters {
+      display: flex;
+      gap: 6px;
+      padding: 10px 15px;
+      overflow-x: auto;
+      background: var(--surface);
+      border-bottom: 1px solid #e0e0e0;
+      position: sticky;
+      top: 76px;
+      z-index: 99;
+    }
+    .filter-btn {
+      padding: 6px 12px;
+      border-radius: 20px;
+      border: 1px solid var(--primary);
+      background: white;
+      color: var(--primary);
+      font-size: 12px;
+      font-family: 'Heebo', sans-serif;
+      cursor: pointer;
+      white-space: nowrap;
+      font-weight: 500;
+    }
+    .filter-btn.active {
+      background: var(--primary);
+      color: white;
+    }
+    .section {
+      margin: 10px;
+    }
+    .section-header {
+      background: var(--primary);
+      color: white;
+      padding: 10px 15px;
+      border-radius: 12px 12px 0 0;
+      font-weight: 700;
+      font-size: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+    }
+    .section-header .count {
+      background: rgba(255,255,255,0.2);
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-size: 11px;
+    }
+    .section-items {
+      background: white;
+      border-radius: 0 0 12px 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .item {
+      display: flex;
+      align-items: center;
+      padding: 12px 15px;
+      border-bottom: 1px solid #f0f0f0;
+      gap: 12px;
+      transition: all 0.2s;
+    }
+    .item:last-child { border-bottom: none; }
+    .item.checked {
+      opacity: 0.5;
+      background: #f8f8f8;
+    }
+    .item.checked .item-name {
+      text-decoration: line-through;
+    }
+    .checkbox {
+      width: 24px;
+      height: 24px;
+      border: 2px solid var(--accent);
+      border-radius: 6px;
+      flex-shrink: 0;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+    .checkbox.checked {
+      background: var(--accent);
+      color: white;
+    }
+    .item-info { flex: 1; }
+    .item-name { font-size: 14px; font-weight: 500; }
+    .item-qty {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+    .item-source {
+      font-size: 10px;
+      background: #e8f1f2;
+      color: var(--primary);
+      padding: 1px 6px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-top: 2px;
+    }
+    .budget-bar {
+      background: white;
+      margin: 10px;
+      padding: 15px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .budget-bar h3 { font-size: 14px; margin-bottom: 8px; }
+    .budget-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      padding: 4px 0;
+    }
+    .budget-row.total {
+      font-weight: 700;
+      border-top: 1px solid #e0e0e0;
+      padding-top: 8px;
+      margin-top: 4px;
+      font-size: 15px;
+    }
+    .clear-btn {
+      display: block;
+      margin: 15px auto;
+      padding: 10px 20px;
+      background: var(--danger);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-family: 'Heebo', sans-serif;
+      font-size: 13px;
+      cursor: pointer;
+    }
+    .back-link {
+      display: block;
+      text-align: center;
+      padding: 15px;
+      color: var(--accent);
+      font-size: 13px;
+      text-decoration: none;
+    }
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>🛒 רשימת קניות</h1>
+    <p>שופרסל דיל / ענק וזול — אזור תעשיה אילת</p>
+    <div class="progress-bar"><div class="progress-fill" id="progress" style="width:0%"></div></div>
+    <div class="progress-text" id="progress-text">0 / 0 פריטים</div>
+  </div>
+
+  <div class="filters">
+    <button class="filter-btn active" data-filter="all">הכל</button>
+    <button class="filter-btn" data-filter="unchecked">נשאר</button>
+    <button class="filter-btn" data-filter="checked">נקנה ✓</button>
+  </div>
+
+  <div id="sections"></div>
+
+  <div class="budget-bar">
+    <h3>💰 תקציב משוער</h3>
+    <div class="budget-row"><span>🍳 אוכל ושתייה</span><span>~₪830</span></div>
+    <div class="budget-row"><span>🥜 נשנושים ופינוקים</span><span>~₪1,125</span></div>
+    <div class="budget-row"><span>🍺 אלכוהול ומיקסרים</span><span>~₪2,100</span></div>
+    <div class="budget-row total"><span>סה"כ</span><span>~₪4,055</span></div>
+  </div>
+
+  <button class="clear-btn" onclick="clearAll()">🗑️ אפס הכל</button>
+  <a class="back-link" href="index.html">← חזרה לחוברת הראשית</a>
+</div>
+
+<script>
+const DATA = [
+  { section: "🥚 ביצים ומוצרי חלב", icon: "🧊", items: [
+    { name: "ביצים", qty: "30 יח' (2.5 תבניות)", src: "אוכל" },
+    { name: "חלב", qty: "3 ליטר", src: "אוכל" },
+    { name: "גבינה צהובה", qty: "800 גרם", src: "אוכל" },
+    { name: "גבינה לבנה 5%", qty: "2 יח'", src: "אוכל" },
+    { name: "קוטג'", qty: "2 יח'", src: "אוכל" },
+    { name: "יוגורט חלבון", qty: "6 יח'", src: "אוכל" },
+    { name: "חמאה", qty: "1 יח'", src: "אוכל" },
+    { name: "סלמון מעושן", qty: "~400 גרם (2 אריזות)", src: "אוכל" },
+    { name: "גבינות למגש (בולגרית, צפתית, פרמזן)", qty: "400 גרם", src: "נשנושים" },
+  ]},
+  { section: "🥖 לחמים ומאפים", icon: "🍞", items: [
+    { name: "לחם פרוס", qty: "2 כיכרות", src: "אוכל" },
+    { name: "פיתות", qty: "3 אריזות", src: "אוכל+נשנושים" },
+    { name: "חלה (שישי!)", qty: "1 יח'", src: "אוכל" },
+  ]},
+  { section: "🥫 ממרחים ורטבים", icon: "🫙", items: [
+    { name: "חומוס", qty: "5 יח'", src: "אוכל+נשנושים" },
+    { name: "טחינה", qty: "1 יח'", src: "אוכל" },
+    { name: "ריבה", qty: "1 יח'", src: "אוכל" },
+    { name: "שוקולד למריחה", qty: "1 יח'", src: "אוכל" },
+    { name: "סלסה", qty: "2 צנצנות", src: "נשנושים" },
+    { name: "גוואקמולי", qty: "2 יח'", src: "נשנושים" },
+    { name: "רוטב ברביקיו", qty: "1 יח'", src: "נשנושים" },
+    { name: "רוטב צ'ילי מתוק", qty: "1 יח'", src: "נשנושים" },
+    { name: "קטשופ", qty: "1 יח'", src: "נשנושים" },
+    { name: "סירופ סוכר", qty: "1 בקבוק", src: "אלכוהול" },
+  ]},
+  { section: "🥬 ירקות ופירות", icon: "🍅", items: [
+    { name: "עגבניות", qty: "1 ק\"ג", src: "אוכל" },
+    { name: "מלפפונים", qty: "0.5 ק\"ג", src: "אוכל" },
+    { name: "פלפלים", qty: "0.5 ק\"ג", src: "אוכל" },
+    { name: "לימון", qty: "17 יח' (2 אוכל + 15 ערק)", src: "אוכל+אלכוהול" },
+    { name: "אבוקדו", qty: "4 יח'", src: "אוכל" },
+    { name: "ירוקים לסלט", qty: "1 אריזה", src: "אוכל" },
+    { name: "נענע טרייה", qty: "4 צרורות", src: "אלכוהול" },
+    { name: "אבטיח", qty: "חצי", src: "נשנושים" },
+    { name: "ענבים", qty: "500 גרם", src: "נשנושים" },
+    { name: "בננות", qty: "1 ק\"ג", src: "נשנושים" },
+  ]},
+  { section: "🧂 תבלינים ובסיס", icon: "🫒", items: [
+    { name: "מלח", qty: "1 יח'", src: "אוכל" },
+    { name: "פלפל", qty: "1 יח'", src: "אוכל" },
+    { name: "שמן זית", qty: "1 בקבוק", src: "אוכל" },
+    { name: "סוכר", qty: "0.5 ק\"ג", src: "אוכל" },
+  ]},
+  { section: "🥣 דגנים וממרחים יבשים", icon: "🥣", items: [
+    { name: "קורנפלקס", qty: "1 קופסה גדולה", src: "אוכל" },
+  ]},
+  { section: "☕ קפה ותה", icon: "☕", items: [
+    { name: "קפה טורקי", qty: "1 אריזה", src: "אוכל" },
+    { name: "קפה נמס", qty: "1 צנצנת", src: "אוכל" },
+    { name: "תה", qty: "1 קופסה", src: "אוכל" },
+  ]},
+  { section: "💧 מים ושתייה קלה", icon: "💧", items: [
+    { name: "מים 1.5 ליטר", qty: "~60 בקבוקים (12 שישיות)", src: "אוכל" },
+    { name: "מיץ תפוזים", qty: "4–6 ליטר", src: "אוכל" },
+    { name: "קולה זירו", qty: "8 × 1.5L", src: "אלכוהול" },
+    { name: "ספרייט / 7up", qty: "4 × 1.5L", src: "אלכוהול" },
+    { name: "סודה", qty: "4 × 1.5L", src: "אלכוהול" },
+    { name: "טוניק", qty: "8 בקבוקים", src: "אלכוהול" },
+    { name: "רדבול", qty: "12–15 פחיות", src: "אלכוהול" },
+    { name: "מיץ חמוציות", qty: "2 ליטר", src: "אלכוהול" },
+  ]},
+  { section: "🍺 בירות", icon: "🍺", items: [
+    { name: "לאגר (גולדסטאר/מכבי)", qty: "30 בקבוקים", src: "אלכוהול" },
+    { name: "קורונה / סטלה", qty: "24 בקבוקים", src: "אלכוהול" },
+    { name: "IPA / בירה בוטיק", qty: "12 בקבוקים", src: "אלכוהול" },
+    { name: "בירה קלה (לבחירה)", qty: "12 בקבוקים", src: "אלכוהול" },
+  ]},
+  { section: "🍸 משקאות חריפים", icon: "🥃", items: [
+    { name: "ערק", qty: "4 בקבוקים", src: "אלכוהול" },
+    { name: "ג'ין", qty: "2 בקבוקים", src: "אלכוהול" },
+    { name: "וודקה", qty: "2 בקבוקים", src: "אלכוהול" },
+    { name: "וויסקי", qty: "1 בקבוק", src: "אלכוהול" },
+  ]},
+  { section: "🥜 חטיפים מלוחים ואגוזים", icon: "🥨", items: [
+    { name: "צ'יפס (מגוון טעמים)", qty: "4 שקיות גדולות", src: "נשנושים" },
+    { name: "נאצ'וס / דוריטוס", qty: "2 שקיות", src: "נשנושים" },
+    { name: "בייגלה / פריצלים", qty: "2 אריזות", src: "נשנושים" },
+    { name: "פופקורן", qty: "2 אריזות", src: "נשנושים" },
+    { name: "קרקרים", qty: "2 אריזות", src: "נשנושים" },
+    { name: "בוטנים", qty: "500 גרם", src: "נשנושים" },
+    { name: "פיסטוקים", qty: "300 גרם", src: "נשנושים" },
+    { name: "מיקס אגוזים", qty: "500 גרם", src: "נשנושים" },
+    { name: "גרעינים", qty: "300 גרם", src: "נשנושים" },
+  ]},
+  { section: "🧊 דליקטסן ומגשים", icon: "🫒", items: [
+    { name: "זיתים (מגוון)", qty: "500 גרם", src: "נשנושים" },
+    { name: "נקניקים יבשים / סלמי", qty: "300 גרם", src: "נשנושים" },
+    { name: "עגבניות מיובשות", qty: "200 גרם", src: "נשנושים" },
+    { name: "מגש אנטיפסטי מוכן", qty: "1 מגש", src: "נשנושים" },
+  ]},
+  { section: "❄️ קפואים", icon: "🧊", items: [
+    { name: "פיצה מעדנות (מגשים)", qty: "4–5 מגשים", src: "נשנושים" },
+    { name: "בורקסים (גבינה, תפו\"א, פטריות)", qty: "24–30 יח' (2 מגשים)", src: "נשנושים" },
+    { name: "אצבעות מוצרלה / ספרינג רולס", qty: "2 אריזות", src: "נשנושים" },
+    { name: "גלידה", qty: "3 ליטר", src: "נשנושים" },
+  ]},
+  { section: "🍫 חטיפים מתוקים", icon: "🍬", items: [
+    { name: "שוקולד (מגוון)", qty: "3 טבלאות", src: "נשנושים" },
+    { name: "עוגיות", qty: "2 אריזות", src: "נשנושים" },
+    { name: "ממתקים / סוכריות", qty: "1 שקית", src: "נשנושים" },
+  ]},
+  { section: "🧹 חד-פעמי וציוד בר", icon: "🥤", items: [
+    { name: "כוסות חד-פעמיות", qty: "1 אריזה", src: "אלכוהול" },
+    { name: "כוסות שוטים", qty: "1 אריזה", src: "אלכוהול" },
+    { name: "מערבבים", qty: "1 אריזה", src: "אלכוהול" },
+    { name: "קשיות", qty: "1 אריזה", src: "אלכוהול" },
+    { name: "פותחן בקבוקים", qty: "1", src: "אלכוהול" },
+  ]},
+  { section: "❄️ קרח (קנו אחרון!)", icon: "🧊", items: [
+    { name: "שקיות קרח", qty: "4–5 שקיות", src: "אלכוהול" },
+  ]},
+];
+
+const STORAGE_KEY = 'bachelor-shopping-2026';
+
+function loadState() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } 
+  catch { return {}; }
+}
+function saveState(state) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+}
+
+let state = loadState();
+let filter = 'all';
+
+function getItemId(si, ii) { return `s${si}_i${ii}`; }
+
+function render() {
+  const container = document.getElementById('sections');
+  let total = 0, checked = 0;
+  let html = '';
+
+  DATA.forEach((section, si) => {
+    let sectionChecked = 0;
+    let itemsHtml = '';
+    
+    section.items.forEach((item, ii) => {
+      const id = getItemId(si, ii);
+      const isChecked = !!state[id];
+      total++;
+      if (isChecked) { checked++; sectionChecked++; }
+
+      const show = filter === 'all' || (filter === 'checked' && isChecked) || (filter === 'unchecked' && !isChecked);
+      
+      itemsHtml += `
+        <div class="item ${isChecked ? 'checked' : ''} ${show ? '' : 'hidden'}" onclick="toggle('${id}')">
+          <div class="checkbox ${isChecked ? 'checked' : ''}">${isChecked ? '✓' : ''}</div>
+          <div class="item-info">
+            <div class="item-name">${item.name}</div>
+            <div class="item-qty">${item.qty}</div>
+          </div>
+        </div>`;
+    });
+
+    const remaining = section.items.length - sectionChecked;
+    const allDone = remaining === 0;
+    
+    html += `
+      <div class="section">
+        <div class="section-header" style="${allDone ? 'opacity:0.5' : ''}">
+          <span>${section.section}</span>
+          <span class="count">${sectionChecked}/${section.items.length}</span>
+        </div>
+        <div class="section-items">${itemsHtml}</div>
+      </div>`;
+  });
+
+  container.innerHTML = html;
+
+  const pct = total > 0 ? Math.round(checked / total * 100) : 0;
+  document.getElementById('progress').style.width = pct + '%';
+  document.getElementById('progress-text').textContent = `${checked} / ${total} פריטים (${pct}%)`;
+}
+
+function toggle(id) {
+  state[id] = !state[id];
+  saveState(state);
+  render();
+}
+
+function clearAll() {
+  if (confirm('בטוח? זה ימחק את כל הסימונים')) {
+    state = {};
+    saveState(state);
+    render();
+  }
+}
+
+// Filter buttons
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    filter = btn.dataset.filter;
+    render();
+  });
+});
+
+render();
+</script>
+</body>
+</html>
